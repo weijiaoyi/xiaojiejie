@@ -131,27 +131,27 @@ $(document).ready(function(){
 
     //setInterval('var hour = new Date().getHours();var minutes = new Date().getMinutes();var seconds = new Date().getSeconds();if( hour < 10 ){ hour = "0"+hour; }if( minutes < 10 ){ minutes = "0"+minutes; }if( seconds < 10 ){ seconds = "0"+seconds; }$("#time").html(hour+":"+minutes+":"+seconds);', 1000);
     //setTimeout(function(){$("#msgs").hide();},10000);
-	// layer.msg('加载环境中，请稍候！');
- //    auto = false;//循环播放模式
- //    textstf = false;//用户信息显示状态
- //    gi = 1;//初始化GET链接序号
- //    gi_max = 1;//最大GET链接序号
- //    vdnum = 0;//初始化GET链接数量
- //    url = "./get-random-url";
- //    vdurlold = new Array("https://tucdn.wpon.cn/api-girl/videos/76.mp4");
- //    vdurl_arr = new Array("https://tucdn.wpon.cn/api-girl/videos/76.mp4");
+	layer.msg('加载环境中，请稍候！');
+    auto = false;//循环播放模式
+    textstf = false;//用户信息显示状态
+    gi = 1;//初始化GET链接序号
+    gi_max = 1;//最大GET链接序号
+    vdnum = 0;//初始化GET链接数量
+    url = "./get-random-url";
+    vdurlold = new Array("https://tucdn.wpon.cn/api-girl/videos/76.mp4");
+    vdurl_arr = new Array("https://tucdn.wpon.cn/api-girl/videos/76.mp4");
 	
-  //  player = document.getElementById("player");
-	// 初始变量设置
-    var auto = false; // 循环播放模式
-    var textstf = true; // 用户信息显示状态
-    var gi = 1; // 初始化GET链接序号
-    var gi_max = 1; // 最大GET链接序号
-    var vdnum = 3; // 初始化GET链接数量
-    var url = "./get-random-url"; // 视频路径
-    var vdurlold = ["<https://tucdn.wpon.cn/api-girl/videos/76.mp4>"]; // 旧视频URL数组
-    var vdurl_arr = ["<https://tucdn.wpon.cn/api-girl/videos/76.mp4>"]; // 视频URL数组
-    var player = document.getElementById("player"); // 播放器
+   player = document.getElementById("player");
+	// // 初始变量设置
+ //    var auto = false; // 循环播放模式
+ //    var textstf = true; // 用户信息显示状态
+ //    var gi = 1; // 初始化GET链接序号
+ //    var gi_max = 1; // 最大GET链接序号
+ //    var vdnum = 3; // 初始化GET链接数量
+ //    var url = "./get-random-url"; // 视频路径
+ //    var vdurlold = ["<https://tucdn.wpon.cn/api-girl/videos/76.mp4>"]; // 旧视频URL数组
+ //    var vdurl_arr = ["<https://tucdn.wpon.cn/api-girl/videos/76.mp4>"]; // 视频URL数组
+ //    var player = document.getElementById("player"); // 播放器
 
 	// 加载播放器源
     // function players() {
@@ -175,11 +175,11 @@ $(document).ready(function(){
 
 	
     players();
-    layer.msg('页面加载完毕，点击屏幕开始播放！', {
-	    btn: ['进入全屏', '就这样看'],yes:function(){
-	    	toggleFullScreen();layer.closeAll();player.play();
-	    }
-	});
+ //    layer.msg('页面加载完毕，点击屏幕开始播放！', {
+	//     btn: ['进入全屏', '就这样看'],yes:function(){
+	//     	toggleFullScreen();layer.closeAll();player.play();
+	//     }
+	// });
     //用户账号缓存
     var user = $.cookie('user');
     if (user != null) {
@@ -263,13 +263,13 @@ function pass(){
 //GET播放链接
 function players() {
 	vdurl="https://tucdn.wpon.cn/api-girl/videos/76.mp4";
-	if (player.readyState > 2) {//（audio/video）元素的就绪状态
-		if(player.played.end(0) > 5){//观看时长大于 5 秒，添加历史记录
+	if (player.readyState > 5) {//（audio/video）元素的就绪状态
+		if(player.played.end(0) > 10){//观看时长大于 5 秒，添加历史记录
 			vdurlold.unshift(player.currentSrc);
 			console.log(vdurlold);
 		}
 	}
-	layer.msg('正在努力加载中···', {icon: 16,shadeClose: true,});
+	//layer.msg('正在努力加载中···', {icon: 16,shadeClose: true,});
     if (vdnum != 0) {
         $("#logo_img").hide();
         $("#msgs").hide();
@@ -300,21 +300,21 @@ function players() {
             	pass();
             	return;
 			};
-            if(vdurl.indexOf("M3U8") >= 0 || vdurl.indexOf("m3u8") >= 0 || vdurl.indexOf("jpg") >= 0) {//m3u8格式判断，注意PC端不可用，如需pc端支持，需加载HLS.JS或者其他支持插件服务
-            	layer.closeAll();
-                $("#logo_img").hide();
-            	$("#logo_imgs").hide();
-                if (textstf==true) {
-                    $("#texts").show();
-                }else{
-                    $("#texts").hide();
-                }
-                $("#love_btn").hide();
-                $("#msg").html("数据正常加载完毕，执行播放事件中！");
-	            player.play();
-	            vdurl_arr.unshift(vdurl);
-	            console.log(vdurl_arr);
-            }else{
+            // if(vdurl.indexOf("M3U8") >= 0 || vdurl.indexOf("m3u8") >= 0 || vdurl.indexOf("jpg") >= 0) {//m3u8格式判断，注意PC端不可用，如需pc端支持，需加载HLS.JS或者其他支持插件服务
+            // 	layer.closeAll();
+            //     $("#logo_img").hide();
+            // 	$("#logo_imgs").hide();
+            //     if (textstf==true) {
+            //         $("#texts").show();
+            //     }else{
+            //         $("#texts").hide();
+            //     }
+            //     $("#love_btn").hide();
+            //     $("#msg").html("数据正常加载完毕，执行播放事件中！");
+	           //  player.play();
+	           //  vdurl_arr.unshift(vdurl);
+	           //  console.log(vdurl_arr);
+            // }else{
             	$.ajax({url: vdurl,type: 'GET',complete: function(response) {
 					if(response.status != 78200) {//测试链接通信状态
 						//$("#msg").html("媒体数据通信失败,正在重新加载，请稍！");
@@ -336,7 +336,7 @@ function players() {
 		                console.log(vdurl_arr);
 	                }
 				}});
-            }
+            // }
         } else {
         	$("#msg").html("读取失败，正在重新发起请求，请稍候！");
             pass();
