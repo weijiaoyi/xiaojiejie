@@ -119,9 +119,9 @@ $(document).ready(function(){
     auto = false;//循环播放模式
     textstf = true;//用户信息显示状态
     gi = 1;//初始化GET链接序号
-    gi_max = 3;//最大GET链接序号
-    vdnum = 0;//初始化GET链接数量
-    url = "https://tucdn.wpon.cn/api-girl/index.php?wpon=url";
+    gi_max = 1;//最大GET链接序号
+    vdnum = 4;//初始化GET链接数量
+    url = "./get-random-url";
     vdurlold = new Array("https://tucdn.wpon.cn/api-girl/videos/76.mp4");
     vdurl_arr = new Array("https://tucdn.wpon.cn/api-girl/videos/76.mp4");
     player = document.getElementById("player");
@@ -192,14 +192,14 @@ $("#yuan").on("click", function(){
         if (user != null) {//登录状态,添加USER信息鉴权
 			//url = "https://cdn-1257991264.cos.ap-guangzhou.myqcloud.com/j/get/get" + gi + ".php?user=" + user;
 		} else {//非登录状态
-			url = "https://tucdn.wpon.cn/api-girl/index.php?wpon=url";
+			url = "./get-random-url";
 		}
 	} else if (gi = gi_max) {//等于最大链接序号，初始化序号值
 		if (user != null) {//登录状态显示收藏源
 			//gi = 0;url = ("https://cdn-1257991264.cos.ap-guangzhou.myqcloud.com/j/get/get.php?user=" + user);
 			this.innerText = "收藏";
 		} else {//非登录状态，显示推荐源
-			gi = 1;url = "https://tucdn.wpon.cn/api-girl/index.php?wpon=url";
+			gi = 1;url = "./get-random-url";
     		this.innerText = "精品源";
 		}
 	}
