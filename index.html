@@ -88,7 +88,7 @@ video::-webkit-media-controls-panel {
     </div>
 
     <div id="texts" style="color:#ffffff;">
-        <span style="position:absolute;bottom:42px;left:10px;;font-size:1.25rem;" id="userid">@Jmw`Power</span>
+        <span style="position:absolute;bottom:42px;left:10px;;font-size:1.25rem;" id="userid">@openai</span>
         <span style="position:absolute;bottom:5px;left:10px;font-size:9px;">本程序仅作研究学习演示，数据采集自网络<br>原作者拍摄创作不易，请勿下载传播<br><span style="color:red;font-size:6px;" id="msg">JMW-|-正在努力加载环境中，请稍候！</span></span>
     </div>
 
@@ -117,8 +117,8 @@ $(document).ready(function(){
     auto = false;//循环播放模式
     textstf = true;//用户信息显示状态
     gi = 1;//初始化GET链接序号
-    gi_max = 3;//最大GET链接序号
-    vdnum = 0;//初始化GET链接数量
+    gi_max = 1;//最大GET链接序号
+    vdnum = 3;//初始化GET链接数量
     url = "./get-random-url";
     vdurlold = new Array("https://tucdn.wpon.cn/api-girl/videos/76.mp4");
     vdurl_arr = new Array("https://tucdn.wpon.cn/api-girl/videos/76.mp4");
@@ -244,8 +244,8 @@ function players() {
 			}
 			console.log(vdurl_arr.indexOf(vdurl));
             player.onstalled = function() {//媒体数据不可用,重新加载
-            	$("#msg").html("媒体数据通信失败,正在重新加载，请稍候！");
-            	layer.msg('媒体数据通信失败,正在重新加载，请稍候！', {icon: 16,shadeClose: true,});
+            	$("#msg").html("媒体数据通信失败,正在重新加载！");
+            	layer.msg('媒体数据通信失败,正在重新加载，请！', {icon: 16,shadeClose: true,});
             	pass();
             	return;
 			};
@@ -266,7 +266,7 @@ function players() {
             }else{
             	$.ajax({url: vdurl,type: 'GET',complete: function(response) {
 					if(response.status != 200) {//测试链接通信状态
-						$("#msg").html("媒体数据通信失败,正在重新加载，请稍候！");
+						$("#msg").html("媒体数据通信失败,正在重新加载，请稍！");
 						layer.msg('媒体数据通信失败,正在重新加载，请稍候！', {icon: 16,shadeClose: true,});
 						pass();
 					}else{
