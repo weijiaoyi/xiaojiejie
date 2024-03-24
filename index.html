@@ -25,7 +25,7 @@ var _hmt = _hmt || [];
 </script>
 <style type="text/css">
 @charset "utf-8";
-@font-face{font-family:electronicFont;src:url(./css/DS-DIGIT.TTF)}
+@font-face{font-family:electronicFont;src:url(https://cdn-1257991264.cos.ap-guangzhou.myqcloud.com/j/css/DS-DIGIT.TTF)}
 *{
     margin: 0px; 
     padding: 0px;
@@ -59,22 +59,22 @@ video::-webkit-media-controls-panel {
 </style>
 <body>
     <div class="app" ontouchmove="return false;">
-        <video id="player" src="demo.mp4" autoplay preload muted mutedNew webkit-playsinline='true' playsinline='true' x5-video-player-type='h5' x5-video-player-fullscreen='true' x5-video-ignore-metadata='true' poster="./img/bg.jpg"></video>
+        <video id="player" src="https://tucdn.wpon.cn/api-girl/videos/27.mp4" autoplay preload muted mutedNew webkit-playsinline='true' playsinline='true' x5-video-player-type='h5' x5-video-player-fullscreen='true' x5-video-ignore-metadata='true' poster="https://cdn-1257991264.cos.ap-guangzhou.myqcloud.com/j/img/bg.jpg"></video>
         <!--[autoplay:自动播放] [mutedNew：初始化静音][mutedNew：初始化静音][webkit-playsinline|playsinline:IOS微信浏览器支持小窗内播放]
         	[preload:预加载][x5-video-player-type:启用同层H5播放器，就是在视频全屏的时候，div可以呈现在视频层上,方便延续触控操作]
 	        [x5-video-player-fullscreen:全屏设置。它又两个属性值，ture和false，true支持全屏播放，false不支持全屏播放][poster:背景图片]-->
     </div>
 
     <div style="position:absolute;top:30vh;width:100vw;height:auto;text-align:center;z-index:666;" id="logo_img">
-        <img src="logoc.png" style="width:70vw;height: auto;text-align:center;">
+        <img src="https://cdn-1257991264.cos.ap-guangzhou.myqcloud.com/j/logoc.png" style="width:70vw;height: auto;text-align:center;">
     </div>
 
     <div style="position:absolute;top:5vh;width:100vw;height:auto;text-align:center;z-index:666;display:none;" id="logo_imgs">
-    	<img src="logoc.png" style="width:70vw;height: auto;text-align:center;">
+    	<img src="https://cdn-1257991264.cos.ap-guangzhou.myqcloud.com/j/logoc.png" style="width:70vw;height: auto;text-align:center;">
     </div>
     
     <div style="position:absolute;top:2vh;left:2vw;width:20vw;height:auto;z-index:999;">
-        <img src="logod.png" style="width:100%;height:auto;">
+        <img src="https://cdn-1257991264.cos.ap-guangzhou.myqcloud.com/j/logod.png" style="width:100%;height:auto;">
     </div>
 
     <div id="msgs">
@@ -103,7 +103,7 @@ video::-webkit-media-controls-panel {
         <!--<br><br><br>-->
         <!--<button style="border-radius:20px;width:48px;height:32px;" onclick="pass();">PASS</button>-->
         <!--<br><br><br>-->
-        <!--<img style="border-radius:10px;width:32px;height:32px;" src="./img/love.png" title="点击添加收藏" id="love_btn"/>-->
+        <!--<img style="border-radius:10px;width:32px;height:32px;" src="https://cdn-1257991264.cos.ap-guangzhou.myqcloud.com/j/img/love.png" title="点击添加收藏" id="love_btn"/>-->
     </div>
 
 </body>
@@ -190,7 +190,7 @@ $("#love_btn").on("click", function(){
 		$.post("post.php",{userid:user,datastr:vdurl},function(love_data,status){
 			love_data = JSON.parse(love_data);
 			if (love_data.status == "YES") {
-				$("#love_btn").attr('src','./img/loves.png');
+				$("#love_btn").attr('src','https://cdn-1257991264.cos.ap-guangzhou.myqcloud.com/j/img/loves.png');
 				layer.msg(love_data.message);
 		    }else{
 		    	layer.msg(love_data.message, {icon: 5});
@@ -241,7 +241,7 @@ function pass(){
 
 //GET播放链接
 function players() {
-	vdurl="demo.mp4";
+	vdurl="https://tucdn.wpon.cn/api-girl/videos/27.mp4";
 	if (player.readyState > 2) {//（audio/video）元素的就绪状态
 		if(player.played.end(0) > 5){//观看时长大于 5 秒，添加历史记录
 			vdurlold.unshift(player.currentSrc);
@@ -263,9 +263,9 @@ function players() {
             player.src = vdurl;
             console.log(vdurl);
             if (gi==0) {
-            	$("#love_btn").attr('src','./img/loves.png');
+            	$("#love_btn").attr('src','https://cdn-1257991264.cos.ap-guangzhou.myqcloud.com/j/img/loves.png');
             } else {
-            	$("#love_btn").attr('src','./img/love.png');
+            	$("#love_btn").attr('src','https://cdn-1257991264.cos.ap-guangzhou.myqcloud.com/j/img/love.png');
             }
             if (vdurl_arr.indexOf(vdurl) >= 1) {//相同播放链接,重新加载
             	$("#msg").html("相同播放链接,正在重新加载，请稍候！");
@@ -334,7 +334,7 @@ function playold() {
     if (vdurlold[0] != null) {
         player.play();
         $("#msg").html("正在努力加载历史播放数据，请稍候！");
-        $("#love_btn").attr('src','./img/loves.png');
+        $("#love_btn").attr('src','https://cdn-1257991264.cos.ap-guangzhou.myqcloud.com/j/img/loves.png');
 	    if(vdurlold[0].indexOf("M3U8") >= 0 || vdurlold[0].indexOf("m3u8") >= 0) {
 	        $("#love_btn").hide();
 	    }else{
