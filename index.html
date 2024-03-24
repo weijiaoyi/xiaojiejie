@@ -76,32 +76,24 @@ video::-webkit-media-controls-panel {
     </div>
 
     <div id="msgs">
-        <span style="position:absolute;top:50px;left:10px;color:#fff;font-size:10px;">点击按钮选择【连续】/【循环】模式</span>
-        <span style="position:absolute;top:65px;left:10px;color:#fff;font-size:10px;">屏幕右滑显示提示文字</span>
-        <span style="position:absolute;top:80px;left:10px;color:#fff;font-size:10px;">屏幕左滑隐藏提示文字</span>
-        <span style="position:absolute;top:95px;left:10px;color:#fff;font-size:10px;">屏幕上滑切换下一个</span>
-        <span style="position:absolute;top:110px;left:10px;color:#fff;font-size:10px;">屏幕下滑切换上一个</span>
-        <span style="position:absolute;top:125px;left:10px;color:#fff;font-size:10px;">点击换源切换数据源</span>
-        <span style="position:absolute;top:140px;left:10px;color:#fff;font-size:10px;">点击爱心按钮收藏</span>
-        <span style="position:absolute;top:155px;left:10px;color:#fff;font-size:10px;">单击播放/暂停</span>
-        <span style="position:absolute;top:170px;left:10px;color:#fff;font-size:10px;">双击进入全屏</span>
+        
     </div>
 
     <div id="texts" style="color:#ffffff;">
-        <span style="position:absolute;bottom:42px;left:10px;;font-size:1.25rem;" id="userid">@openai</span>
-        <span style="position:absolute;bottom:5px;left:10px;font-size:9px;">本程序仅作研究学习演示，数据采集自网络<br>原作者拍摄创作不易，请勿下载传播<br><span style="color:red;font-size:6px;" id="msg">JMW-|-正在努力加载环境中，请稍候！</span></span>
+        <span style="position:absolute;bottom:42px;left:10px;;font-size:1.25rem;" id="userid">@Openai</span>
+        <span style="position:absolute;bottom:5px;left:10px;font-size:9px;"><br><span style="color:red;font-size:6px;" id="msg">JMW-|-正在努力加载环境中，请稍候！</span></span>
     </div>
 
     <span style="position:absolute;top:5px;right:10px;font-family:electronicFont;color:#fff;font-size:1.2rem;" id="time">00:00:00</span>
 
     <div id="buttons" style="position:absolute;bottom:150px;right:10px;z-index:999">
-        <button id="auto_btn" style="border-radius:20px;width:32px;height:32px;">循环</button>
+<!--         <button id="auto_btn" style="border-radius:20px;width:32px;height:32px;">循环</button>
         <br><br><br>
         <button id="yuan" style="border-radius:20px;width:48px;height:32px;">换源</button>
         <br><br><br>
         <button style="border-radius:20px;width:48px;height:32px;" onclick="pass();">PASS</button>
         <br><br><br>
-        <img style="border-radius:10px;width:32px;height:32px;" src="https://cdn-1257991264.cos.ap-guangzhou.myqcloud.com/j/img/love.png" title="点击添加收藏" id="love_btn"/>
+        <img style="border-radius:10px;width:32px;height:32px;" src="https://cdn-1257991264.cos.ap-guangzhou.myqcloud.com/j/img/love.png" title="点击添加收藏" id="love_btn"/> -->
     </div>
 
 </body>
@@ -198,10 +190,10 @@ $(document).ready(function(){
 	}
 });
 //播放模式选择
-$("#auto_btn").on("click", function(){
-    auto = !auto;console.log(auto);
-    this.innerText = (auto ? '连播' : '循环');
-});
+// $("#auto_btn").on("click", function(){
+//     auto = !auto;console.log(auto);
+//     this.innerText = (auto ? '连播' : '循环');
+// });
 //收藏按钮事件
 // $("#love_btn").on("click", function(){
 // 	user = $.cookie('user');
@@ -273,7 +265,7 @@ function players() {
     if (vdnum != 0) {
         $("#logo_img").hide();
         $("#msgs").hide();
-        $("#logo_imgs").show();
+        $("#logo_imgs").hide();
     }
     vdnum++;
     $.get(url,function(vdurl_data,status){
@@ -401,37 +393,37 @@ $("#logo_img").click(function(){
     	$("#logo_img").hide();
         player.play();
     } else {
-    	$("#logo_img").show();
+    	$("#logo_img").hide();
         player.pause();
     }
 });
 $("#logo_img").dblclick(function(){
-    toggleFullScreen();
+    //toggleFullScreen();
 });
 $("#player").dblclick(function(){
-    toggleFullScreen();
+    //toggleFullScreen();
 });
 //进入全屏，建议使用EDGE浏览器
-function toggleFullScreen() {
-	if (!document.fullscreenElement &&
-		!document.mozFullScreenElement && !document.webkitFullscreenElement) {
-		if (document.documentElement.requestFullscreen) {
-			document.documentElement.requestFullscreen();
-		} else if (document.documentElement.mozRequestFullScreen) {
-			document.documentElement.mozRequestFullScreen();
-		} else if (document.documentElement.webkitRequestFullscreen) {
-			document.documentElement.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
-		}
-	} else {
-		if (document.cancelFullScreen) {
-			document.cancelFullScreen();
-		} else if (document.mozCancelFullScreen) {
-			document.mozCancelFullScreen();
-		} else if (document.webkitCancelFullScreen) {
-			document.webkitCancelFullScreen();
-		}
-	}
-}
+// function toggleFullScreen() {
+// 	if (!document.fullscreenElement &&
+// 		!document.mozFullScreenElement && !document.webkitFullscreenElement) {
+// 		if (document.documentElement.requestFullscreen) {
+// 			document.documentElement.requestFullscreen();
+// 		} else if (document.documentElement.mozRequestFullScreen) {
+// 			document.documentElement.mozRequestFullScreen();
+// 		} else if (document.documentElement.webkitRequestFullscreen) {
+// 			document.documentElement.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
+// 		}
+// 	} else {
+// 		if (document.cancelFullScreen) {
+// 			document.cancelFullScreen();
+// 		} else if (document.mozCancelFullScreen) {
+// 			document.mozCancelFullScreen();
+// 		} else if (document.webkitCancelFullScreen) {
+// 			document.webkitCancelFullScreen();
+// 		}
+// 	}
+// }
 </script>
 <script>
 //触摸屏幕手势
@@ -475,12 +467,12 @@ document.addEventListener("touchend",function(e) { //手指离开屏幕
 		playold();
 		break;
 	case 3:
-		$('#texts').hide();
-        textstf = !textstf;
+		// $('#texts').hide();
+  //       textstf = !textstf;
 		break;
 	case 4:
-		$('#texts').show();
-        textstf = !textstf;
+		// $('#texts').show();
+  //       textstf = !textstf;
 		break;
 	}
 },false);
