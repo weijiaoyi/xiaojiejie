@@ -267,7 +267,7 @@ function players() {
             	$.ajax({url: vdurl,type: 'GET',complete: function(response) {
 					if(response.status != 200) {//测试链接通信状态
 						$("#msg").html("媒体数据通信失败,正在重新加载，请稍！");
-						layer.msg('媒体数据通信失败,正在重新加载，请稍候！', {icon: 16,shadeClose: true,});
+						layer.msg('媒体数据通信失败,正在重新加载，请稍候看看！', {icon: 16,shadeClose: true,});
 						pass();
 					}else{
 						layer.closeAll();
