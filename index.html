@@ -111,18 +111,58 @@ video::-webkit-media-controls-panel {
 <script src="https://cdn.bootcdn.net/ajax/libs/layer/3.1.1/layer.min.js"></script>
 <script>
 $(document).ready(function(){
-    setInterval('var hour = new Date().getHours();var minutes = new Date().getMinutes();var seconds = new Date().getSeconds();if( hour < 10 ){ hour = "0"+hour; }if( minutes < 10 ){ minutes = "0"+minutes; }if( seconds < 10 ){ seconds = "0"+seconds; }$("#time").html(hour+":"+minutes+":"+seconds);', 1000);
-    setTimeout(function(){$("#msgs").hide();},10000);
+	// 创建时间更新的函数
+    function updateTime() {
+        var date = new Date();
+        var hour = date.getHours();
+        var minutes = date.getMinutes();
+        var seconds = date.getSeconds();
+        hour = hour < 10 ? "0" + hour : hour;
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+        $("#time").html(hour + ":" + minutes + ":" + seconds);
+    }
+    // 每秒更新时间
+    setInterval(updateTime, 1000);
+    // 10秒后隐藏消息
+    setTimeout(function() {
+        $("#msgs").hide();
+    }, 10000);
+
+    //setInterval('var hour = new Date().getHours();var minutes = new Date().getMinutes();var seconds = new Date().getSeconds();if( hour < 10 ){ hour = "0"+hour; }if( minutes < 10 ){ minutes = "0"+minutes; }if( seconds < 10 ){ seconds = "0"+seconds; }$("#time").html(hour+":"+minutes+":"+seconds);', 1000);
+    //setTimeout(function(){$("#msgs").hide();},10000);
 	layer.msg('加载环境中，请稍候！');
     auto = false;//循环播放模式
     textstf = true;//用户信息显示状态
     gi = 1;//初始化GET链接序号
     gi_max = 1;//最大GET链接序号
-    vdnum = 3;//初始化GET链接数量
+    vdnum = 0;//初始化GET链接数量
     url = "./get-random-url";
     vdurlold = new Array("https://tucdn.wpon.cn/api-girl/videos/76.mp4");
     vdurl_arr = new Array("https://tucdn.wpon.cn/api-girl/videos/76.mp4");
     player = document.getElementById("player");
+
+	// 加载播放器源
+    function players() {
+        $.get(url, function(vdurl_data, status) {
+            if (status === 'success') {
+                vdurl = vdurl_data;
+                player.src = vdurl;
+                console.log(vdurl);
+                player.play();
+                vdurl_arr.unshift(vdurl);
+            } else {
+                $("#msg").html("读取失败，正在重新发起请求，请稍候3！");
+                pass();
+            }
+        }).fail(function() {
+            $("#msg").html("媒体数据通信失败,正在重新加载，请稍候4！");
+            layer.msg('媒体数据通信失败，请稍候再试！5', {icon: 16, shadeClose: true});
+            pass();
+        });
+    }
+
+	
     players();
     layer.msg('页面加载完毕，点击屏幕开始播放！', {
 	    btn: ['进入全屏', '就这样看'],yes:function(){
@@ -169,39 +209,39 @@ $("#auto_btn").on("click", function(){
 // 	}
 // });
 //点击用户名事件
-$("#userid").on("click", function(){
-    user = $.cookie('user');
-    if (user == null) {
-    	login();
-    } else {
-        $.removeCookie('user'); //删除cookie
-        $("#userid").html("@Jmw-Power");
-        layer.msg("亲，您已退出登录了哟！", {icon: 0});
-    }
-});
+// $("#userid").on("click", function(){
+//     user = $.cookie('user');
+//     if (user == null) {
+//     	login();
+//     } else {
+//         $.removeCookie('user'); //删除cookie
+//         $("#userid").html("@Jmw-Power");
+//         layer.msg("亲，您已退出登录了哟！", {icon: 0});
+//     }
+// });
 //播放源按钮事件
-$("#yuan").on("click", function(){
-	user = $.cookie('user');
-	if (gi < gi_max) {//小于最大链接序号，持续增加序号值
-		gi++;
-		this.innerText = "源00" + gi;//置播放源名称
-		if (gi>9) {this.innerText = "源0" + gi;}//大于9，缺省0
-        if (gi==2) {this.innerText = "JSON源";}//自定义名称
-        if (user != null) {//登录状态,添加USER信息鉴权
-			//url = "https://cdn-1257991264.cos.ap-guangzhou.myqcloud.com/j/get/get" + gi + ".php?user=" + user;
-		} else {//非登录状态
-			url = "./get-random-url";
-		}
-	} else if (gi = gi_max) {//等于最大链接序号，初始化序号值
-		if (user != null) {//登录状态显示收藏源
-			//gi = 0;url = ("https://cdn-1257991264.cos.ap-guangzhou.myqcloud.com/j/get/get.php?user=" + user);
-			this.innerText = "收藏";
-		} else {//非登录状态，显示推荐源
-			gi = 1;url = "./get-random-url";
-    		this.innerText = "精品源";
-		}
-	}
-});
+// $("#yuan").on("click", function(){
+// 	user = $.cookie('user');
+// 	if (gi < gi_max) {//小于最大链接序号，持续增加序号值
+// 		gi++;
+// 		this.innerText = "源00" + gi;//置播放源名称
+// 		if (gi>9) {this.innerText = "源0" + gi;}//大于9，缺省0
+//         if (gi==2) {this.innerText = "JSON源";}//自定义名称
+//         if (user != null) {//登录状态,添加USER信息鉴权
+// 			//url = "https://cdn-1257991264.cos.ap-guangzhou.myqcloud.com/j/get/get" + gi + ".php?user=" + user;
+// 		} else {//非登录状态
+// 			url = "./get-random-url";
+// 		}
+// 	} else if (gi = gi_max) {//等于最大链接序号，初始化序号值
+// 		if (user != null) {//登录状态显示收藏源
+// 			//gi = 0;url = ("https://cdn-1257991264.cos.ap-guangzhou.myqcloud.com/j/get/get.php?user=" + user);
+// 			this.innerText = "收藏";
+// 		} else {//非登录状态，显示推荐源
+// 			gi = 1;url = "./get-random-url";
+//     		this.innerText = "精品源";
+// 		}
+// 	}
+// });
 //PASS切换事件
 function pass(){
 	setTimeout(function () {
