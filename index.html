@@ -57,7 +57,7 @@ video::-webkit-media-controls-panel {
 </style>
 <body>
     <div class="app" ontouchmove="return false;">
-        <video id="player" src="https://tucdn.wpon.cn/api-girl/videos/76.mp4" autoplay preload mutedNew webkit-playsinline='true' playsinline='true' x5-video-player-type='h5' x5-video-player-fullscreen='true' x5-video-ignore-metadata='true' poster="https://gd-hbimg.huaban.com/5be8c95d65cea2509c8ad22628a0f3e658fb92131dbb4-Jy1n5w_fw1200"></video>
+        <video id="player" src="https://tucdn.wpon.cn/api-girl/videos/76.mp4" autoplay preload mutedNew webkit-playsinline='true' playsinline='true' x5-video-player-type='h5' x5-video-player-fullscreen='true' x5-video-ignore-metadata='true' poster="https://gd-hbimg.huaban.com/dd5c3c7f9ab5aa97ff3b84852f834f47873bd2a5fee0-tBa7jJ_fw658webp"></video>
         <!--[autoplay:自动播放] [mutedNew：初始化静音][mutedNew：初始化静音][webkit-playsinline|playsinline:IOS微信浏览器支持小窗内播放]
         	[preload:预加载][x5-video-player-type:启用同层H5播放器，就是在视频全屏的时候，div可以呈现在视频层上,方便延续触控操作]
 	        [x5-video-player-fullscreen:全屏设置。它又两个属性值，ture和false，true支持全屏播放，false不支持全屏播放][poster:背景图片]-->
@@ -322,6 +322,7 @@ function players() {
 						$("#logo_imgs").hide();
                         if (textstf==true) {
                             $("#texts").show();
+                            
                         }else{
                             $("#texts").hide();
                         }
@@ -386,7 +387,8 @@ $("#player").click(function(){
             $("#texts").hide();
         }
     } else {
-    	$("#logo_img").show();
+    	$("#logo_img").hide();
+        //开始就弹出
         player.pause();
         $("#texts").show();
         $("#msgs").show();
