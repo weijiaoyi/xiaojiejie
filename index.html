@@ -63,11 +63,10 @@ video::-webkit-media-controls-panel {
 	        [x5-video-player-fullscreen:全屏设置。它又两个属性值，ture和false，true支持全屏播放，false不支持全屏播放][poster:背景图片]-->
     </div>
 
-    <div style="position:absolute;top:30vh;width:100vw;height:auto;text-align:center;z-index:666;" id="logo_img">
-	    
+    <div style="position:absolute;bottom:10vh;width:100vw;height:auto;text-align:center;z-index:666;" id="logo_img">
 	    
     	<a href="https://u.144514.xyz/ad01" target="_blank" style="display: block; text-align: center;">
-        <img src="https://gd-hbimg.huaban.com/dd0e843cd0ab35d52f8dbf9f6a4a748d5b227f1a5fa6a-zSuNXB_fw658webp" alt="Example Image" style="width:70vw; height:auto;">
+        <img src="https://gd-hbimg.huaban.com/a3a0dd08c1e8117af4df04b3df8115c976ffffa161062-dou1ot_fw658webp" alt="Example Image" style="width:70vw; height:auto;">
     </a>
         </div>
 
@@ -382,13 +381,14 @@ $("#player").click(function(){
         player.play();
         $("#msgs").hide();
         if (textstf==true) {
+
             $("#texts").show();
         }else{
             $("#texts").hide();
         }
     } else {
-    	$("#logo_img").hide();
-        //开始就弹出
+    	$("#logo_img").show();
+        //暂停show
         player.pause();
         $("#texts").show();
         $("#msgs").show();
